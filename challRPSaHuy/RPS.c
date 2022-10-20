@@ -134,7 +134,7 @@ int main () {
         wins = 0;   // win lien tuc
       }
 
-      if (wins >= 5) {
+      if (wins >= 6) {
         puts("Congrats!!!");
         system("/bin/sh");
 	
