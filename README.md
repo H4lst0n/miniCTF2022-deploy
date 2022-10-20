@@ -142,7 +142,7 @@ if (strstr(player_turn, loses[computer_turn])) {
     puts("You win! Play again?");
     return true;
 ```
-Tận dụng lỗi này ta sẽ nhập `{"rock", "paper", "scissors"}` 5 lần để có thể chiến thắng bằng cách win 6 lần.
+Tận dụng lỗi này ta sẽ nhập `{"rock", "paper", "scissors"}` 6 lần để có thể chiến thắng.
 ```
  if (wins >= 6) {
         puts("Congrats!!!");
