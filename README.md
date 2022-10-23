@@ -204,9 +204,11 @@ QR-Code
 ## Solution
 Quét mã QR ra được đoạn mã base64
 
-![image](https://user-images.githubusercontent.com/91616280/197390779-a7211cb8-29c7-438b-944f-ace1c25af825.png)
-![image](https://user-images.githubusercontent.com/91616280/197390839-b2715d5b-48a6-40f0-b6e0-6ce8c15fbb2d.png)
-![image](https://user-images.githubusercontent.com/91616280/197390894-1a05d988-c2be-4daa-9691-b8ab75f4a80f.png)
+- ![image](https://user-images.githubusercontent.com/91616280/197390779-a7211cb8-29c7-438b-944f-ace1c25af825.png)
+
+- ![image](https://user-images.githubusercontent.com/91616280/197390839-b2715d5b-48a6-40f0-b6e0-6ce8c15fbb2d.png)
+
+- ![image](https://user-images.githubusercontent.com/91616280/197390894-1a05d988-c2be-4daa-9691-b8ab75f4a80f.png)
 
 
 ## Flag
