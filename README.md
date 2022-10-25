@@ -49,7 +49,18 @@ int main(){
     char name[30];
     gets(name);
 ```
-Vì vậy khi ta nhập 1 dãy thật dài thì chương trình sẽ ghi đè lên biến money và làm thay đổi giá trị của biến.
+Vì vậy khi ta nhập 1 dãy thật dài thì chương trình sẽ ghi đè lên biến money qua lệnh `gets()` và làm thay đổi giá trị của biến khi nhìn vào stack.
+```
+|        .  .  .  .                              
+|  +-------------------+                                   
+S  |       money       |
+t  +-------------------+
+a  |      name[30]     |  
+c  +-------------------+
+k  |        ...        |
+|  +-------------------+
+```
+Vì vậy ta tiến hành nhập vào biến `name` để có thể khiến biến `money` bị thay đổi giá trị từ đó ta có thể có 1 số tiền lớn và mua flag.
 ```
 halston in ~ λ nc 174.138.21.217 3137
 
